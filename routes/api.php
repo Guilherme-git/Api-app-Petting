@@ -24,6 +24,7 @@ Route::group(['middleware' => ['jwt']], function () {
     Route::prefix('user')->group(function () {
         Route::get('list-all',[\App\Http\Controllers\UserController::class,'listAll']);
         Route::post('edit/{id}',[\App\Http\Controllers\UserController::class,'edit']);
+        
 
         Route::prefix('client')->group(function () {
             Route::post('create', [\App\Http\Controllers\ClientController::class, 'create']);
