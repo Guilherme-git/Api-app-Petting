@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Link com o storage--------------
+Route::get('storage-link',function (){
+    return \Illuminate\Support\Facades\Artisan::call('storage:link');
+});
+//--------------------------------------
+
 Route::post('auth/login', [\App\Http\Controllers\Auth::class, 'login']);
 Route::get('auth/me', [\App\Http\Controllers\Auth::class, 'me']);
 
@@ -23,6 +29,8 @@ Route::group(['middleware' => ['jwt']], function () {
 
     Route::prefix('user')->group(function () {
         Route::get('list-all',[\App\Http\Controllers\UserController::class,'listAll']);
+        Route::put('edit-profile',[\App\Http\Controllers\UserController::class,'editProfile']);
+        Route::post('edit-image-profile',[\App\Http\Controllers\UserController::class,'editImageProfile']);
         Route::post('edit/{id}',[\App\Http\Controllers\UserController::class,'edit']);
 
         Route::prefix('client')->group(function () {

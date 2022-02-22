@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Models\User;
+use Illuminate\Support\Env;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -39,6 +41,30 @@ class UserController extends Controller
         }
     }
 
+    public function editProfile(Request $request)
+    {
+        $user = User::find($this->__construct()->me()->getData()->id);
+        $user->name = $request->name;
+        $user->address = $request->address;
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        return response()->json(['message'=>"Editado com sucesso"]);
+    }
+
+    public function editImageProfile(Request $request)
+    {
+        $user = User::find($this->__construct()->me()->getData()->id);
+        Storage::delete($user->image);
+
+        $user->image = $request->file('image')->store('user-image');
+        $user->save();
+
+        return response()->json(['image'=>$user->image]);
+    }
+
     public function listAll()
     {
         $users = User::all();
@@ -54,6 +80,6 @@ class UserController extends Controller
         $user->type = $request->type;
         $user->save();
 
-        return response()->json(['message'=>"Editado com modificado"]);
+        return response()->json(['message'=>"Editado com sucesso"]);
     }
 }
