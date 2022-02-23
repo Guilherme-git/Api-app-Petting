@@ -48,7 +48,9 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->phone = $request->phone;
         $user->email = $request->email;
+        if($request->password != null) {
         $user->password = bcrypt($request->password);
+        }
         $user->save();
 
         return response()->json(['message'=>"Editado com sucesso"]);
