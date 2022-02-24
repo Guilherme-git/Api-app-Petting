@@ -19,6 +19,8 @@ class Client extends Model
         'amount',
         'image',
         'paid',
+        "birth",
+        "image",
         'user',
     ];
 

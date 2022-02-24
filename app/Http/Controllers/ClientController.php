@@ -33,6 +33,8 @@ class ClientController extends Controller
             $animal->age = $ani['age'];
             $animal->type = $ani['type'];
             $animal->details = $ani['details'];
+            $animal->birth = $ani['birth'];
+            $animal->image = $request->file($ani['image'])->store('animal-image');
             $animal->client = $client->id;
             $animal->save();
         }
@@ -143,4 +145,14 @@ class ClientController extends Controller
         return $arrayClients;
     }
 
+    public function editImageAnimal(Request $request)
+    {
+        $animal = Animal::find($request->id);
+        torage::delete($animal->image);
+
+        $animal->image = $request->file('image')->store('animal-image');
+        $animal->save();
+
+        return response()->json(['image'=>$animal->image]);
+    }
 }

@@ -37,6 +37,7 @@ Route::group(['middleware' => ['jwt']], function () {
             Route::post('create', [\App\Http\Controllers\ClientController::class, 'create']);
             Route::get('list', [\App\Http\Controllers\ClientController::class, 'list']);
             Route::get('list-all', [\App\Http\Controllers\ClientController::class, 'listAll']);
+            Route::post('edit-image-animal', [\App\Http\Controllers\ClientController::class, 'editImageAnimal']);
         });
 
         Route::prefix('tour')->group(function () {
