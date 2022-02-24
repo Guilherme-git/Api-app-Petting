@@ -34,19 +34,20 @@ class ClientController extends Controller
             $animal->type = $ani['type'];
             $animal->details = $ani['details'];
             $animal->birth = $ani['birth'];
-            $animal->image = $request->file($ani['image'])->store('animal-image');
+            if ($ani['image'] != null) {
+                $animal->image = $request->file($ani['image'])->store('animal-image');
+            }
             $animal->client = $client->id;
             $animal->save();
         }
 
-        $returnCLient = Client::where('id','=',$client->id)
+        $returnCLient = Client::where('id', '=', $client->id)
             ->with('animal')
             ->get();
 
         $arrayClients = array();
 
-        foreach ($returnCLient as $c)
-        {
+        foreach ($returnCLient as $c) {
             if ($c['paid'] == 1) {
                 array_push($arrayClients, [
                     "id" => $c['id'],
@@ -81,8 +82,7 @@ class ClientController extends Controller
 
         $arrayClients = array();
 
-        foreach ($clients as $client)
-        {
+        foreach ($clients as $client) {
             if ($client['paid'] == 1) {
                 array_push($arrayClients, [
                     "id" => $client['id'],
@@ -117,8 +117,7 @@ class ClientController extends Controller
 
         $arrayClients = array();
 
-        foreach ($clients as $client)
-        {
+        foreach ($clients as $client) {
             if ($client['paid'] == 1) {
                 array_push($arrayClients, [
                     "id" => $client['id'],
@@ -153,6 +152,6 @@ class ClientController extends Controller
         $animal->image = $request->file('image')->store('animal-image');
         $animal->save();
 
-        return response()->json(['image'=>$animal->image]);
+        return response()->json(['image' => $animal->image]);
     }
 }
