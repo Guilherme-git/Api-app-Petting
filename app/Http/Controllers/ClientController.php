@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Animal;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ClientController extends Controller
 {
@@ -147,7 +148,7 @@ class ClientController extends Controller
     public function editImageAnimal(Request $request)
     {
         $animal = Animal::find($request->id);
-        torage::delete($animal->image);
+        Storage::delete($animal->image);
 
         $animal->image = $request->file('image')->store('animal-image');
         $animal->save();

@@ -100,6 +100,7 @@ class TourController extends Controller
             $toursNew = new Tours();
             $toursNew->animal = $tours['animal'];
             $toursNew->tutor = $tours['tutor'];
+            $toursNew->plan = $tours['plan'];
             $toursNew->endHour = $tours['endHour'];
             $toursNew->startAddress = $tours['startAddress'];
             $toursNew->startHour = $tours['startHour'];
@@ -144,6 +145,7 @@ class TourController extends Controller
                     'tours',
                     'tours.animal',
                     'tours.tutor',
+                    'tours.plan',
                     'tours.description',
                     'tours.endLocation',
                     'tours.startLocation',
@@ -257,6 +259,7 @@ class TourController extends Controller
                     'tours',
                     'tours.animal',
                     'tours.tutor',
+                    'tours.plan',
                     'tours.description',
                     'tours.endLocation',
                     'tours.startLocation',
@@ -369,6 +372,7 @@ class TourController extends Controller
                     'tours',
                     'tours.animal',
                     'tours.tutor',
+                    'tours.plan',
                     'tours.description',
                     'tours.endLocation',
                     'tours.startLocation',

@@ -40,6 +40,12 @@ Route::group(['middleware' => ['jwt']], function () {
             Route::post('edit-image-animal', [\App\Http\Controllers\ClientController::class, 'editImageAnimal']);
         });
 
+        Route::prefix('plain')->group(function () {
+            Route::post('create', [\App\Http\Controllers\PlainController::class, 'create']);
+            Route::get('list', [\App\Http\Controllers\PlainController::class, 'list']);
+            Route::put('edit-value', [\App\Http\Controllers\PlainController::class, 'editValue']);
+        });
+
         Route::prefix('tour')->group(function () {
             Route::post('create', [\App\Http\Controllers\TourController::class, 'create']);
             Route::get('list', [\App\Http\Controllers\TourController::class, 'list']);

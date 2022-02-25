@@ -16,6 +16,7 @@ class Tours extends Model
         'id',
         'animal',
         'tutor',
+        'plan'.
         'endHour',
         'startAddress',
         'startHour',
@@ -33,6 +34,10 @@ class Tours extends Model
 
     public function tutor(){
         return $this->hasOne(Client::class,'id','tutor');
+    }
+
+    public function plan(){
+        return $this->hasOne(Plan::class,'id','plan');
     }
 
     public function description(){
