@@ -104,6 +104,10 @@ class TourController extends Controller
             $toursNew->endHour = $tours['endHour'];
             $toursNew->startAddress = $tours['startAddress'];
             $toursNew->startHour = $tours['startHour'];
+            $toursNew->rest = $tours['rest'];
+            $toursNew->water = $tours['water'];
+            $toursNew->piss = $tours['piss'];
+            $toursNew->poop = $tours['poop'];
             $toursNew->tour = $tour->id;
             $toursNew->save();
 
@@ -153,7 +157,7 @@ class TourController extends Controller
             ->get();
 
         $arrayTour = array();
-
+        
         foreach ($tour as $t) {
             if ($t->sent === "1") {
                 if ($t->status == "1") {

@@ -21,6 +21,10 @@ class Tours extends Model
         'startAddress',
         'startHour',
         "endHours",
+        'rest',
+        'water',
+        'piss',
+        'poop',
         'tour',
     ];
 
