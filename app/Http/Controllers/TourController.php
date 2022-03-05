@@ -157,7 +157,7 @@ class TourController extends Controller
             ->get();
 
         $arrayTour = array();
-        
+
         foreach ($tour as $t) {
             if ($t->sent === "1") {
                 if ($t->status == "1") {
